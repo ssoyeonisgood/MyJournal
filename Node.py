@@ -6,7 +6,7 @@ class Node:
         self.pageNumber = pageNumber
 
     def __str__(self):
-        return f'data: {self.data} pageNumber: {self.pageNumber}'
+        return f'data: {self.data}, pageNumber: {self.pageNumber}'
 
     def getData(self):
         return self.data
@@ -24,4 +24,5 @@ class Node:
         return self.prev
 
     def setPrev(self, prev):
-        return self.prev is prev
+        self.prev = prev
+        return self.prev

@@ -14,6 +14,14 @@ class LinkedList:
             yield currNd.data
             currNd = currNd.next
 
+    def __str__(self):
+        string = ''
+        value = self.head
+        while value is not None:
+            string += f'\n{value}'
+            value = value.getNext()
+        return string
+
     def isEmpty(self):
         return self.head == None
 
@@ -45,24 +53,32 @@ class LinkedList:
             newNd.setPrev(currNd)
             self.tail = newNd
         self.length += 1
+        print(newNd.getPrev())
 
-    def insertMiddle(self, newData, pageNumber):
+    def insertAfter(self, newData, pageNum):
         if self.length >= self.maxLen:
             raise Exception("My journal is full")
 
-        newNd = Node(newData, pageNumber + 1)
+        newNd = Node(newData, pageNum + 1)
         if self.isEmpty():
             self.head = self.tail = newNd
         else:
             currNd = self.head
-            for i in range(pageNumber - 1):
+            for i in range(pageNum - 1):
                 currNd = currNd.getNext()
             nextNd = currNd.getNext()
             currNd.setNext(newNd)
             newNd.setNext(nextNd)
             nextNd.setPrev(newNd)
+            newNd.setPrev(currNd)
         self.length += 1
         return newNd
+
+    def getNode(self, pageNum):
+        currNd = self.head
+        for i in range(pageNum - 1):
+            currNd = currNd.getNext()
+        return currNd
 
     def peekFirst(self):
         if self.isEmpty():
@@ -106,24 +122,3 @@ class LinkedList:
             value = currNd.getData()
             self.length -= 1
             return value
-
-    def __str__(self):
-        string = ''
-        value = self.head
-        while value is not None:
-            string += f'\n{value}'
-            value = value.getNext()
-        return string
-
-
-# L = LinkedList()
-
-# L.insertFirst(1)
-# L.insertLast(3)
-# L.insertLast(4)
-# print(L)
-# print()
-# L.insertMiddle(2, 1)
-
-# print(L)
-# print(L.length)

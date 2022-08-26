@@ -19,22 +19,38 @@ class Journal:
         self.list.insertLast(data)
 
     def add_page_middle(self, data, pageNum):
-        newNd = self.list.insertMiddle(data, pageNum)
+        newNd = self.list.insertAfter(data, pageNum)
 
         node = newNd.getNext()
         while node is not None:
             node.pageNumber += 1
             node = node.getNext()
 
-    def pickData(self, pageNum, content):
-        if self.list.isEmpty():
-            return None
-        else:
-            node = self.list.head
-            while node is not None:
-                if node.pageNumber == pageNum:
-                    content = node.getData()
-        return content
+    def edit_page(self, pageNum, content):
+        node = self.list.getNode(pageNum)
+        node.setData(content)
+
+    def get_next(self):
+        if self.currNd == self.list.tail:
+            print("you are already on the last page.\n")
+            return
+
+        self.currNd = self.currNd.getNext()
+        print('\n--------PAGE---------')
+        print(self.currNd)
+        print()
+        return self.currNd
+
+    def get_prev(self):
+        if self.currNd == self.list.head:
+            print("\nyou are already on the first page.\n")
+            return
+
+        self.currNd = self.currNd.getPrev()
+        print('\n--------PAGE---------')
+        print(self.currNd)
+        print()
+        return self.currNd
 
     def __str__(self):
-        return f'\nName: {self.name} \nList: {self.list}'
+        return f'\n**Journal Name: {self.name}** {self.list}'
