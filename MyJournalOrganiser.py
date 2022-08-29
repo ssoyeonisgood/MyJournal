@@ -1,4 +1,3 @@
-from email import message
 from LinkedList import*
 from journal import*
 import pickle
