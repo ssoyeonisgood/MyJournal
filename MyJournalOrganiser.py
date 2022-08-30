@@ -13,7 +13,6 @@ def check_input_int(message):
             continue
         else:
             return user_input
-            break
 
 
 def main():
@@ -32,7 +31,7 @@ def main():
             journal = None
             sub_menu = 0
             while sub_menu != 4:
-                print("_________menu________")
+                print("_________MENU________")
                 print("1: Load a journal")
                 print("2: Go to next page")
                 print("3: go to previous page")

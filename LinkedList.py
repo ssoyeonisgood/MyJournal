@@ -8,12 +8,6 @@ class LinkedList:
         self.length = 0
         self.maxLen = maxLen
 
-    def __iter__(self):
-        currNd = self.head
-        while currNd is not None:
-            yield currNd.data
-            currNd = currNd.next
-
     def __str__(self):
         string = ''
         value = self.head
@@ -53,7 +47,6 @@ class LinkedList:
             newNd.setPrev(currNd)
             self.tail = newNd
         self.length += 1
-        print(newNd.getPrev())
 
     def insertAfter(self, newData, pageNum):
         if self.length >= self.maxLen:
@@ -79,23 +72,6 @@ class LinkedList:
         for i in range(pageNum - 1):
             currNd = currNd.getNext()
         return currNd
-
-    def peekFirst(self):
-        if self.isEmpty():
-            return None
-        else:
-            value = self.head.getData()
-            return value
-
-    def peekLast(self):
-        if self.isEmpty():
-            return None
-        else:
-            currNd = self.head
-            while currNd.getNext() != None:
-                currNd = currNd.getNext()
-            lastPeek = currNd.getData()
-            return lastPeek
 
     def removeFirst(self):
         if self.isEmpty():
